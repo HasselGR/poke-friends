@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import {useState, useEffect} from 'react'
+import { Card } from './components/card/card.component';
 import './App.css';
 
 function App() {
+   const [pokemon, setPokemon] = useState();
+   const [isShowing, setIsShowing] = useState(false);
+
+   const fetchPokemon = async () => {
+      const response = await(fetch('https://pokeapi.co/api/v2/pokemon/637/'))
+      const poke =  await response.json();
+      console.log(poke)
+      setPokemon({
+        name: poke.name,
+        id: poke.id,
+        sprite: poke.sprites.front_default,
+      })
+      setIsShowing(!isShowing);
+   }
+
+   
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 onClick={fetchPokemon} >God i want a front-end job so badly</h1>
+      {isShowing? <Card key={pokemon.id} pokemon={pokemon}/>: null}
     </div>
   );
 }
