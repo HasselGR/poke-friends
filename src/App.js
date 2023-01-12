@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import { CardList } from './components/card-list/card-list.component';
+import { Card } from './components/card/card.component';
 import './App.css';
 
 function App() {
@@ -54,6 +55,12 @@ function App() {
     quote:'Y esa vaina vons?'
   }
   ]
+   const testcard = {
+    pokename: 'volcarona',
+    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/637.png",
+    id: 637
+   };
+
    let cards= []
    const [pokemon, setPokemon] = useState();
    const [isShowing, setIsShowing] = useState(false);
@@ -68,9 +75,8 @@ function App() {
           sprite:poke.sprites.front_default
         })
       })
+      console.log({cards})
       setIsShowing(!isShowing);
-      console.log(cards)
-      return cards;
    }
 
    
@@ -79,6 +85,7 @@ function App() {
       <h1 onClick={fetchPokemon} >God i want a front-end job so badly</h1>
       {isShowing? <CardList pokemons={cards}/>: null}
       {/* <CardList pokemons={cards}/> */}
+      {/* <Card pokemon={testcard}></Card> */}
     </div>
   );
 }
