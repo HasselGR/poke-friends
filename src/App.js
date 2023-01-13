@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import { CardList } from './components/card-list/card-list.component';
+import { Navbar } from './components/navbar/navbar.component';
 import './App.css';
 
 const library =[{
@@ -57,6 +58,27 @@ const library =[{
   pokename:'serperior',
   quote:'Queria poner a Crobat pero ya estaba'
 },
+{
+  name:'Emily',
+  pokename:'mawile',
+  quote:'No matter what changes, will no longer change me'
+},
+{
+  name:'Betty',
+  pokename:'sylveon',
+  quote:'Pero… ¿dejas de amar a alguien porque te traiciona? No lo creo. Eso es lo que hace que la traición duela tanto; el dolor, la frustración, la furia… y yo seguía amándola.'
+},
+{
+  name:'Angie',
+  pokename:'scorbunny',
+  quote:"When I choose to see the good side of things, I'm not being naive. It is strategic and necessary. It's how I learned to survive through everything."
+},
+{
+  name:'Alexis',
+  pokename:'krookodile',
+  quote:'Fight for everlasting peace.'
+},
+
 
 ]
 
@@ -70,22 +92,16 @@ function App() {
 
   useEffect(() => {
     const fetchPokemon = async () => {
-      // library.map(async (element) => {
-      //   const response = await(fetch(`https://pokeapi.co/api/v2/pokemon/${element.pokename}/`))
-      //   const poke =  await response.json();
-      //   cards.push({
-      //     ...element,
-      //     id: poke.id,
-      //     sprite:poke.sprites.front_default
-      //   })
-      // })
+ 
       const fetchingPromises = await Promise.all(library.map(element => fetch(`https://pokeapi.co/api/v2/pokemon/${element.pokename}/`)))
       const cardJsons = await Promise.all(fetchingPromises.map(element => element.json()));
-      const cards = cardJsons.map(card => ({ //PARA HACER, COMBINAR EL ARREGLO DE BIBLIOTECA CON ESTO
-        pokename: card.name,
+      const cards = cardJsons.map((card, index) => 
+      {return({
+        ...library[index],
         id: card.id,
         sprite:card.sprites.front_default
-      }))
+      })}
+      )
       setPokemons(cards)
     }
     fetchPokemon()
@@ -93,6 +109,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar/>
       <h1>God i want a front-end job so badly</h1>
       <CardList pokemons={pokemons}/>
     </div>
