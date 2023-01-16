@@ -13,12 +13,12 @@ export const Card = (props) => {
     
     return(
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-    <div className="card-container" onClick={flipCard}>
+    <div style={{backgroundColor: props.pokemon.color}} className="card-container" onClick={flipCard}>
         <h2>{props.pokemon.pokename.toUpperCase()}</h2>
         <img src={`${props.pokemon.sprite}`} alt="pokemon" />
         <p> {props.pokemon.id}</p>
     </div>
-    <div className="card-container" onClick={flipCard}>
+    <div style={{backgroundColor: props.pokemon.color}} className="card-container" onClick={flipCard}>
         <h2>{props.pokemon.name}</h2>
         
         <p> {props.pokemon.quote}</p>

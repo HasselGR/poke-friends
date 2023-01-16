@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import { CardList } from './components/card-list/card-list.component';
 import { Navbar } from './components/navbar/navbar.component';
+import { SearchBox } from './components/search-box/search-box.component';
 import './App.css';
 
 const library =[{
@@ -56,7 +57,7 @@ const library =[{
 {
   name:'Lily',
   pokename:'serperior',
-  quote:'Queria poner a Crobat pero ya estaba'
+  quote:'Can you feel your heart burning? Can you feel the struggle within? The fear within is beyond anything your soul is able to make. You cannot kill me in a way that matters.'
 },
 {
   name:'Emily',
@@ -78,17 +79,68 @@ const library =[{
   pokename:'krookodile',
   quote:'Fight for everlasting peace.'
 },
-
-
+{
+  name:'Toto',
+  pokename:'xurkitree',
+  quote:"Te creo, porque yo tambien soy embustero.", 
+},
+{
+  name:'Luis',
+  pokename:'electivire',
+  quote:"Soy el verdadero egoista, porque con el egoismo egoismeamos mejor", 
+},
+{
+  name:'Alejo',
+  pokename:'ivysaur',
+  quote:"NO USES UN FOR EACH SI LO VAS A INTERRUMPIR, GAMBOA", 
+},
+{
+  name:'Cesar T.',
+  pokename:'umbreon',
+  quote:"Pero que habla, mano?", 
+},
 ]
 
+const colours = {
+	normal: '#A8A77A',
+	fire: '#EE8130',
+	water: '#6390F0',
+	electric: '#F7D02C',
+	grass: '#7AC74C',
+	ice: '#96D9D6',
+	fighting: '#C22E28',
+	poison: '#A33EA1',
+	ground: '#E2BF65',
+	flying: '#A98FF3',
+	psychic: '#F95587',
+	bug: '#A6B91A',
+	rock: '#B6A136',
+	ghost: '#735797',
+	dragon: '#6F35FC',
+	dark: '#5a483b',
+	steel: '#B7B7CE',
+	fairy: '#D685AD',
+};
 
 function App() {
-   const [pokemons, setPokemons] = useState([]);
+  const [pokemons, setPokemons] = useState([]);
+  const [searchField, setSearchField] = useState("");
+  const [filteredPokemons, setFilteredPokemons] = useState([])
+
+
+  const handleChange = (event) => {
+    setSearchField(event.target.value)
+  }
 
   useEffect(() => {
     console.log({pokemons})
   },[pokemons])
+
+  useEffect(() =>{
+    setFilteredPokemons(pokemons.filter(pokemon =>
+      pokemon.name.toLowerCase().includes(searchField.toLowerCase())
+    ))
+  },[searchField, pokemons])
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -99,7 +151,8 @@ function App() {
       {return({
         ...library[index],
         id: card.id,
-        sprite:card.sprites.front_default
+        sprite:card.sprites.front_default,
+        color: colours[card.types[0].type.name]
       })}
       )
       setPokemons(cards)
@@ -110,8 +163,12 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-      <h1>God i want a front-end job so badly</h1>
-      <CardList pokemons={pokemons}/>
+      <h1>Check out my friends and their favorite Pokemons!</h1>
+      <SearchBox
+        placeholder='Search Friend'
+        handleChange={handleChange}
+        />
+      <CardList pokemons={searchField === ""? pokemons: filteredPokemons}/>
     </div>
   );
 }
