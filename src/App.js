@@ -80,6 +80,11 @@ const library =[{
   quote:'Fight for everlasting peace.'
 },
 {
+  name:'Nina',
+  pokename:'eevee',
+  quote:"Eres más de lo que tu mismo crees.", 
+},
+{
   name:'Toto',
   pokename:'xurkitree',
   quote:"Te creo, porque yo tambien soy embustero.", 
@@ -94,10 +99,16 @@ const library =[{
   pokename:'ivysaur',
   quote:"NO USES UN FOR EACH SI LO VAS A INTERRUMPIR, GAMBOA", 
 },
-{
+{ 
   name:'Cesar T.',
   pokename:'umbreon',
   quote:"Pero que habla, mano?", 
+},
+
+{
+  name:'Diana',
+  pokename:'mewtwo',
+  quote:"Create Yourself.", 
 },
 ]
 

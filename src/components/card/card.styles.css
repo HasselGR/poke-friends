@@ -15,6 +15,7 @@
 
 p{
   margin-top: 10%;
+  font-size: 1rem;
 }
 
 .card-container:hover {
@@ -24,7 +25,7 @@ p{
 @media (min-width: 768px) and (max-width: 1068px) {
 
   p{
-    font-size: 14px;
+    font-size: 0.8rem;
   }
   
 }
