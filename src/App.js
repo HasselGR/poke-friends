@@ -110,6 +110,11 @@ const library =[{
   pokename:'mewtwo',
   quote:"Create Yourself.", 
 },
+{
+  name:'Katrina',
+  pokename:'sceptile',
+  quote:"Siempre que pienses que algo no tiene solución, míralo desde otra perspectiva y analiza todas las opciones, ya verás que siempre hay una solución.", 
+},
 ]
 
 const colours = {
