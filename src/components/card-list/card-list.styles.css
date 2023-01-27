@@ -16,7 +16,22 @@
   }
   
 }
+@media (min-width: 426px){
 
+  .card-list{
+    grid-template-columns: 1fr;
+
+  }
+  
+}
+@media (min-width: 500px) {
+
+  .card-list{
+    grid-template-columns: 1fr 1fr;
+
+  }
+  
+}
 @media (min-width: 768px) and (max-width: 1023px) {
 
   .card-list{
